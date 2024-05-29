@@ -4,17 +4,18 @@ import asyncio
 
 async def main():
     choices = {1: 15, 2: 30, 3: 60}
+    word_suffixes = {1: "у", 2: "ы", 3: "ы", 4: "ы"}
     while True:
         try:
             choice = int(input(
                 f"\nВведи кол-во минут или цифру:\n\n{', '.join([f'{key} - {value} мин' for key, value in choices.items()])}\n\nВвод: "))
 
             if choice in choices.keys():
-                text = f"\nЗапущен таймер гибернации на {choices[choice]} минут. Можно прервать через Ctrl + C"
+                text = f"\nЗапущен таймер гибернации на {choices[choice]} минут{word_suffixes.get(choices[choice] % 10, '') if choices[choice] != 11 else ''}. Можно прервать через Ctrl + C"
                 sleep = choices[choice]*60
 
             elif 0 < choice < 900:
-                text = f"\nЗапущен таймер гибернации на {choice} минут. Можно прервать через Ctrl + C"
+                text = f"\nЗапущен таймер гибернации на {choice} минут{word_suffixes.get(choice % 10, '') if choice != 11 else ''}. Можно прервать через Ctrl + C"
                 sleep = choice*60
 
             else:
