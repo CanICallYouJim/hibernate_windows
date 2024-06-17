@@ -1,3 +1,4 @@
+import datetime
 import os
 import asyncio
 
@@ -21,7 +22,7 @@ async def main():
             else:
                 raise Exception
 
-            print(text)
+            print(f"\n{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}"+text)
             await asyncio.sleep(sleep)
 
             os.system("shutdown /h")
